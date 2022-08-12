@@ -28,7 +28,7 @@ function initialize()
     {
         Write-host "SourceDirectory found [SUCCESS]" -ForegroundColor Green   
         
-        if ( "$Script:TargetDirectory" -eq "[]" )
+        if ( "$Script:TargetDirectory" -ne "[]" )
         {
             $Script:TargetDirectory=$Script:SourceDirectory
         }
@@ -56,6 +56,7 @@ function main()
     try 
     {
         ls ${Script:SourceDirectory}\*.heic | foreach { magick  $_.fullname $_.fullname.replace(".heic", ".jpg") }
+        Write-Host "Conversion completed successfully."
     }
     catch   
     {
